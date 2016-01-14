@@ -17,7 +17,7 @@ import java.sql.Statement;
  */
 public class DbManager {
 
-    public static String loginStupid(String username, String password) {
+    public static User loginStupid(String username, String password) {
 
         try {
             Connection conn = getConnection("T4labb");
@@ -26,15 +26,15 @@ public class DbManager {
             System.out.println(sql);
             ResultSet data = stmt.executeQuery(sql);
             data.next();
-            return String.format("Du är nu inloggad som %s.", data.getString("username"));
+            return new User(data.getString("username"), data.getInt("userlvl"));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
-        return "Felaktigt användarnamn/Lösenord!";
+        return new User("Guest", 0);
     }
 
-    public static String loginBetter(String username, String password) {
+    public static User loginBetter(String username, String password) {
 
         //http://www.theserverside.com/news/1365244/Why-Prepared-Statements-are-important-and-how-to-use-them-properly
         try {
@@ -45,12 +45,13 @@ public class DbManager {
             System.out.println(stmt.toString());
             ResultSet data = stmt.executeQuery();
             data.next();
-            return String.format("Du är nu inloggad som %s.", data.getString("username"));
+
+            return new User(data.getString("username"), data.getInt("userlvl"));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
-        return "Felaktigt användarnamn/Lösenord!";
+        return new User("Guest", 0);
     }
 
     private static Connection getConnection(String server) {

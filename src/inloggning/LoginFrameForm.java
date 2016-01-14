@@ -112,24 +112,25 @@ public class LoginFrameForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       String username = textFieldsUsername.getText();
-       String password = textFieldPassword.getText();
-       String response = DbManager.loginStupid(username, password);
-       
-       // pass fel' OR 'a' = 'a
+        String username = textFieldsUsername.getText();
+        String password = textFieldPassword.getText();
+        User user = DbManager.loginStupid(username, password);
+        String response = String.format("Du är inloggad som %s med rättighetslvl %s.", user.getUsername(), user.getUserlvl());
+        // pass fel' OR 'a' = 'a
         labelLoginMessage.setText(response);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       textFieldPassword.setText("fel' OR 'a' = 'a");
+        textFieldPassword.setText("fel' OR 'a' = 'a");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-         String username = textFieldsUsername.getText();
-       String password = textFieldPassword.getText();
-     
-       String response = DbManager.loginBetter(username, password);
-       // pass fel' OR 'a' = 'a
+        String username = textFieldsUsername.getText();
+        String password = textFieldPassword.getText();
+
+        User user = DbManager.loginBetter(username, password);
+        String response = String.format("Du är inloggad som %s med rättighetslvl %s.", user.getUsername(), user.getUserlvl());
+        // pass fel' OR 'a' = 'a
         labelLoginMessage.setText(response);
     }//GEN-LAST:event_jButton3ActionPerformed
 
