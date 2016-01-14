@@ -34,6 +34,8 @@ public class User {
     private void setUserlvl(int userlvl) {
         if(userlvl < 0){
             userlvl = 0;
+        }else if(userlvl > 99){
+            userlvl = 99; 
         }
         this.userlvl = userlvl;
     }
