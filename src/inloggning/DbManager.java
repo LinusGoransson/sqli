@@ -20,7 +20,7 @@ public class DbManager {
     public static User loginStupid(String username, String password) {
 
         try {
-            Connection conn = getConnection("T4labb");
+            Connection conn = getConnection("localhost");
             Statement stmt = (Statement) conn.createStatement();
             String sql = String.format("SELECT * FROM user WHERE username='%s' AND password='%s'", username, password);
             System.out.println(sql);
@@ -38,7 +38,7 @@ public class DbManager {
 
         //http://www.theserverside.com/news/1365244/Why-Prepared-Statements-are-important-and-how-to-use-them-properly
         try {
-            Connection conn = getConnection("T4labb");
+            Connection conn = getConnection("localhost");
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM user WHERE username=? AND password=?");
             stmt.setString(1, username);
             stmt.setString(2, password);
